@@ -13,8 +13,10 @@ public class Sale {
     private Date date;
     private BigDecimal amount;
     private boolean isClosed; // flag to know if the sale is closed
-    private BigDecimal sumaParcial, totalTaxes,totalWithTaxes;
-    private static BigDecimal totalAmount;
+    private BigDecimal sumaParcial;
+    BigDecimal totalTaxes,totalWithTaxes;
+    BigDecimal taxes = new BigDecimal("0.21");
+    static BigDecimal totalAmount = new BigDecimal("0");
 
     public Sale () {  // Assigns the current date, a code to the sale, etc.
         this.saleCode = saleCode;
@@ -24,33 +26,40 @@ public class Sale {
     }
 
     public void addLine(ProductID prodID, BigDecimal price, PatientContr contr) throws SaleClosedException {
-        try {
-            this.sumaParcial = ProductSaleLine.Operation(prodID, price, contr, amount);
-            calculateAmount();
-            addTaxes();
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (isClosed == true){
+
+            throw new SaleClosedException("Sale Closed Exception");
         }
+
+        this.sumaParcial = ProductSaleLine.Operation(price, contr, amount);
+        calculateAmount();
+
+
     }
 
     private void calculateAmount() {
 
-        totalAmount.add(sumaParcial);
+        totalAmount = totalAmount.add(sumaParcial);
 
     }
 
     private void addTaxes() throws SaleClosedException {
-        BigDecimal taxes = new BigDecimal(0.21);
+
+        if (isClosed == true){
+            throw new SaleClosedException("Sale Closed Exception");
+        }
         totalTaxes = totalAmount.multiply(taxes);
+
     }
 
     public void calculateFinalAmount() throws SaleClosedException {
+        addTaxes();
         totalWithTaxes = totalAmount.add(totalTaxes);
     }
 
     public BigDecimal getAmount() {
-
+        setClosed();
         return totalWithTaxes;
     }
 
@@ -85,7 +94,4 @@ public class Sale {
         this.amount = amount;
     }
 
-    public void setClosed(boolean closed) {
-        isClosed = closed;
-    }
 }

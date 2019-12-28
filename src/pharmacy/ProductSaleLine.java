@@ -11,9 +11,16 @@ public class ProductSaleLine {
     private BigDecimal price;
     private PatientContr contr;*/
 
-    public static BigDecimal Operation(ProductID prodID, BigDecimal price, PatientContr contr, BigDecimal amount) throws Exception {
+
+    public static BigDecimal Operation(BigDecimal price, PatientContr contr, BigDecimal amount){
+
         BigDecimal temporal = amount.multiply(price);
-        BigDecimal solucion = temporal.multiply(contr.getPatientContr());
+        BigDecimal solucion = null;
+        try {
+            solucion = temporal.multiply(contr.getPatientContr());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return solucion;
     }
 
