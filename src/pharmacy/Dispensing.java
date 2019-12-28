@@ -9,23 +9,26 @@ import java.util.Date;
 public class Dispensing {
 
     private byte nOrder; // n. of order for this dispensing inside the treatment
-    private Date initDate, finalDate; // The period
+    private Date initDate, finalDate, actualDate; // The period
     private boolean isCompleted;
-    private Date dateActual;
+
 
     // The set of medicines to dispense and its control, among others
-    public Dispensing(ProductID productID, Date dateActual) {
+    public Dispensing() {
         this.nOrder = nOrder;
         this.isCompleted = isCompleted;
         this.initDate = initDate;
         this.finalDate = finalDate;
-        this.dateActual = dateActual;
+    }
 
+    public Dispensing(Sale sale){
+        this();
+        this.actualDate = sale.getDate();
     }
 
     public boolean dispensingEnabled() throws DispensingNotAvailableException {
         //Probablemente este mal por el valor de dateActual no se si sera correcto
-        if (initDate.getYear() <= dateActual.getYear() && initDate.getMonth() <= dateActual.getMonth() && initDate.getDate() < dateActual.getDate()){
+        if (actualDate.compareTo(initDate) > 0){
             return true;
         }else{
             throw new DispensingNotAvailableException("No esta en el periodo de dispensacion habilitado");
@@ -33,10 +36,14 @@ public class Dispensing {
     }
 
     public void setProductAsDispensed(ProductID prodID) {
+        boolean productAdquired = false;
+
+        productAdquired = MedicineDispensingLine.adquired(prodID, productAdquired);
 
     }
 
-    public void setCompleted(boolean comp) {
+    public void setCompleted() {
+        this.isCompleted = true;
 
     }
 

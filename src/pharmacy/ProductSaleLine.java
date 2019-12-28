@@ -7,9 +7,6 @@ import java.math.BigDecimal;
 
 public class ProductSaleLine {
 
-    /*private ProductID prodID;
-    private BigDecimal price;
-    private PatientContr contr;*/
 
 
     public static BigDecimal Operation(BigDecimal price, PatientContr contr, BigDecimal amount){
