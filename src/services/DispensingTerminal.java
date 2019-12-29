@@ -3,47 +3,48 @@ package services;
 import data.HealthCardID;
 import data.PatientContr;
 import data.ProductID;
-import exceptions.ConnectException;
-import exceptions.HealthCardException;
-import exceptions.NotValidePrescriptionException;
-import exceptions.ProductIDException;
+import exceptions.*;
 import pharmacy.Dispensing;
 import pharmacy.ProductSpecification;
+import pharmacy.Sale;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 public class DispensingTerminal implements NationalHealthService{
 
+    private Sale sale;
     public DispensingTerminal() {
+        this.sale = sale;
 
     }
 
-    public void getePrescription(char option) {
+    public void getePrescription(char option) throws ConnectException, NotValidePrescriptionException, PatientIDException, HealthCardException{
 
     }
 
-    public void initNewSale() {
+    public void initNewSale() throws DispensingNotAvailableException{
+        sale = new Sale();
 
     }
 
-    public void enterProduct(ProductID pID) {
+    public void enterProduct(ProductID pID) throws ConnectException, SaleClosedException, SaleNotInitiatedException, ProductIDException, ProductNotFoundException, ProductNotInDispensingException{
 
     }
 
-    public void finalizeSale() {
+    public void finalizeSale() throws SaleNotInitiatedException, SaleClosedException{
 
     }
 
-    public void realizePayment(BigDecimal quantity) {
+    public void realizePayment(BigDecimal quantity) { //OPCIONAL
 
     }
 
-    public void realizePayment() {
+    public void realizePayment() { //NO SE PIDE IMPLMENTEAR
 
     }
 
-    public void printNextDispensingSheet() {
+    public void printNextDispensingSheet() { //NO SE PIDE SU IMPLEMENTACION
 
     }
 
@@ -67,5 +68,5 @@ public class DispensingTerminal implements NationalHealthService{
         return null;
     }
 
-// Other methods
+
 }

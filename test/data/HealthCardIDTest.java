@@ -1,21 +1,22 @@
 package data;
 
-import exceptions.NotFoundValueException;
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class HealthCardIDTest {
 
+    HealthCardID healthCardID1;
 
-    @Test
-    public void ExceptionHealthCardIDTest() throws Exception{
-        HealthCardID healthCardID = new HealthCardID(null);
-        assertThrows(NotFoundValueException.class,()->healthCardID.getPersonalID());
+    @BeforeEach
+    void setUp(){
+        healthCardID1 = new HealthCardID("73215736C");
     }
 
     @Test
-    public void Test2() throws Exception{
-        HealthCardID healthCardID1 = new HealthCardID("73215736C");
+    public void HealthCardIDTest() throws Exception{
+
         assertEquals("73215736C", healthCardID1.getPersonalID());
 
     }

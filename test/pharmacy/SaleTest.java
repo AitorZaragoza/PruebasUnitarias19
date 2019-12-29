@@ -56,7 +56,7 @@ public class SaleTest {
 
 
     @Test
-    public void getAmoundTest() throws SaleClosedException {
+    public void getAmoundTest(){
 
         BigDecimal solucion = new BigDecimal("48.400");
         assertEquals(solucion, sale.getAmount());
@@ -69,7 +69,7 @@ public class SaleTest {
     }
 
     @Test
-    public void SaleClosedExceptionTest() throws SaleClosedException {
+    public void SaleClosedExceptionTest(){
         assertThrows(SaleClosedException.class,()->sale.addLine(prodID, price, patientContr));
         assertThrows(SaleClosedException.class,()->sale.calculateFinalAmount());
 
