@@ -50,6 +50,7 @@ public class DispensingTerminal implements NationalHealthService{
 
     @Override
     public Dispensing getePrescription(HealthCardID hcID) throws HealthCardException, NotValidePrescriptionException, ConnectException {
+
         return null;
     }
 

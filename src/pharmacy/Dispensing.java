@@ -44,7 +44,6 @@ public class Dispensing {
 
     public void setCompleted() {
         this.isCompleted = true;
-
     }
 
     public byte getnOrder() {

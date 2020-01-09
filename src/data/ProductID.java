@@ -10,10 +10,7 @@ public class ProductID {
         this. productID = code;
     }
 
-    public String getProductID()  throws Exception{
-        if(productID == null){
-            throw new NotFoundValueException("Product Code Invalid");
-        }
+    public String getProductID(){
         return productID;
     }
 

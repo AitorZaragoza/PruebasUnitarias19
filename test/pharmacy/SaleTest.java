@@ -17,7 +17,6 @@ public class SaleTest {
 
     int saleCode;
     Date date;
-    BigDecimal amount1, amount2;
     boolean isClosed; // flag to know if the sale is closed
     BigDecimal sumaParcial, totalTaxes,totalWithTaxes, price, price2;
     static BigDecimal totalAmount;
@@ -29,9 +28,6 @@ public class SaleTest {
     @BeforeEach
     void setUp() throws SaleClosedException {
         //PRODUCTO 1
-        amount1 = new BigDecimal("12");
-        sale.setAmount(amount1);
-
         price = new BigDecimal("5");
         prodID = new ProductID("21212121");
         BigDecimal num = new BigDecimal("0.5");
@@ -39,15 +35,13 @@ public class SaleTest {
         sale.addLine(prodID, price, patientContr);
 
         //PRODUCTO 2
-        amount2 = new BigDecimal("10");
-        sale.setAmount(amount2);
-
         price2 = new BigDecimal("2");
         prodID2 = new ProductID("20202020");
         BigDecimal num2 = new BigDecimal("0.5");
         patientContr2 = new PatientContr(num2);
 
         sale.addLine(prodID2, price2, patientContr2);
+
 
         sale.setSaleCode(1);
         sale.calculateFinalAmount();
@@ -58,7 +52,7 @@ public class SaleTest {
     @Test
     public void getAmoundTest(){
 
-        BigDecimal solucion = new BigDecimal("48.400");
+        BigDecimal solucion = new BigDecimal("4.235");
         assertEquals(solucion, sale.getAmount());
     }
 

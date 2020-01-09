@@ -14,11 +14,7 @@ public class PatientContr {
     }
 
 
-    public BigDecimal getPatientContr() throws Exception{
-        if(patientContr == null){
-            throw new NotFoundValueException("PatientContr Invalid");
-        }
-
+    public BigDecimal getPatientContr(){
         return patientContr;
     }
 

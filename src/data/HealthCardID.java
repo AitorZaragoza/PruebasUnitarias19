@@ -14,11 +14,7 @@ final public class HealthCardID {
         this. personalID = code;
     }
 
-    public String getPersonalID() throws Exception{
-        if(personalID == null){
-            throw new NotFoundValueException("Code Invalid");
-        }
-
+    public String getPersonalID(){
         return personalID;
     }
 

@@ -1,26 +1,22 @@
 package pharmacy;
 
-import data.PatientContr;
 import data.ProductID;
 
 import java.math.BigDecimal;
 
-public class ProductSaleLine {
+public class ProductSaleLine{
+
+    private BigDecimal subtotal;
 
 
+    public ProductSaleLine(ProductID prodID, BigDecimal solution){
 
-    public static BigDecimal Operation(BigDecimal price, PatientContr contr, BigDecimal amount){
+        this.subtotal = solution;
 
-        BigDecimal temporal = amount.multiply(price);
-        BigDecimal solucion = null;
-        try {
-            solucion = temporal.multiply(contr.getPatientContr());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return solucion;
+
     }
 
-
-
+    public BigDecimal getSubtotal() {
+        return subtotal;
+    }
 }

@@ -5,7 +5,10 @@ import data.ProductID;
 import exceptions.SaleClosedException;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 public class Sale {
 
@@ -13,35 +16,42 @@ public class Sale {
     private Date date;
     private BigDecimal amount;
     private boolean isClosed; // flag to know if the sale is closed
-    private BigDecimal sumaParcial;
-    BigDecimal totalTaxes,totalWithTaxes;
-    BigDecimal taxes = new BigDecimal("0.21");
+    private BigDecimal totalTaxes,totalWithTaxes;
+    private BigDecimal taxes = new BigDecimal("0.21");
     static BigDecimal totalAmount = new BigDecimal("0");
+    List<ProductSaleLine> listaVenta= new ArrayList<>();
 
     public Sale () {  // Assigns the current date, a code to the sale, etc.
         this.saleCode = saleCode;
         this.date = date;
-        this.amount = amount;
+        this.amount = new BigDecimal("0");
         this.isClosed = isClosed;
+
     }
 
     public void addLine(ProductID prodID, BigDecimal price, PatientContr contr) throws SaleClosedException {
+
 
         if (isClosed == true){
 
             throw new SaleClosedException("Sale Closed Exception");
         }
 
-        this.sumaParcial = ProductSaleLine.Operation(price, contr, amount);
-        calculateAmount();
+        BigDecimal solucion = price.multiply(contr.getPatientContr());
+        ProductSaleLine product = new ProductSaleLine(prodID, solucion);
 
+        listaVenta.add(product);
 
     }
 
     private void calculateAmount() {
+        Iterator<ProductSaleLine> it = listaVenta.iterator();
 
-        totalAmount = totalAmount.add(sumaParcial);
+        while (it.hasNext()) {
+            ProductSaleLine p = it.next();
+            amount = amount.add(p.getSubtotal());
 
+        }
     }
 
     private void addTaxes() throws SaleClosedException {
@@ -49,17 +59,18 @@ public class Sale {
         if (isClosed == true){
             throw new SaleClosedException("Sale Closed Exception");
         }
-        totalTaxes = totalAmount.multiply(taxes);
-
+        totalTaxes = amount.multiply(taxes);
     }
 
     public void calculateFinalAmount() throws SaleClosedException {
+        calculateAmount();
         addTaxes();
-        totalWithTaxes = totalAmount.add(totalTaxes);
+        totalWithTaxes = amount.add(totalTaxes);
+        setClosed();
     }
 
     public BigDecimal getAmount() {
-        setClosed();
+
         return totalWithTaxes;
     }
 
@@ -69,9 +80,7 @@ public class Sale {
 
     public boolean isClosed() {
 
-        if (isClosed == true){
-            return true;
-        }else{ return false; }
+        return this.isClosed;
     }
 
     public int getSaleCode() {

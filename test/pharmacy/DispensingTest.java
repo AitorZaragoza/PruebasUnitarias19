@@ -19,13 +19,13 @@ public class DispensingTest {
     static boolean isCompleted;
     Sale sale = new Sale();
     SimpleDateFormat sdf;
+    static Dispensing disp;
 
 
     @BeforeEach
     void setUp(){
         nOrder = 12;
         sdf = new SimpleDateFormat("yyyy-MM-dd");
-
     }
 
 
@@ -49,10 +49,11 @@ public class DispensingTest {
         initDate = sdf.parse("2019-12-20");
 
         sale.setDate(act);
-        Dispensing disp = new Dispensing(sale);
+        disp = new Dispensing(sale);
         disp.setInitDate(initDate);
 
         assertEquals(true, disp.dispensingEnabled());
 
     }
+
 }
