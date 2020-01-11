@@ -1,7 +1,5 @@
 package data;
 
-import exceptions.NotFoundValueException;
-
 import java.math.BigDecimal;
 
 public class PatientContr {
@@ -14,7 +12,8 @@ public class PatientContr {
     }
 
 
-    public BigDecimal getPatientContr(){
+    public BigDecimal getPatientContr(){ //Suponemos que nunca sera null
+
         return patientContr;
     }
 

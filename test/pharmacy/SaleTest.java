@@ -2,6 +2,7 @@ package pharmacy;
 
 
 import data.PatientContr;
+import exceptions.NotFoundValueException;
 import exceptions.SaleClosedException;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -26,7 +27,7 @@ public class SaleTest {
     Sale sale = new Sale();
 
     @BeforeEach
-    void setUp() throws SaleClosedException {
+    void setUp() throws SaleClosedException{
         //PRODUCTO 1
         price = new BigDecimal("5");
         prodID = new ProductID("21212121");

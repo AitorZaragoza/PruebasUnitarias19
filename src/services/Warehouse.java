@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface Warehouse {
 
-    void updateStock(List<ProductSaleLine> listOfProducts)
-            throws InsuficientExistences;
+    void updateStock(List<ProductSaleLine> listOfProducts) throws InsuficientExistences;
 
 }

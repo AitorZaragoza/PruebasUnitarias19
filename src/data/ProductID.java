@@ -1,6 +1,8 @@
 package data;
 
 
+import exceptions.NotFoundValueException;
+
 public class ProductID {
     private final String productID;
 
@@ -9,7 +11,11 @@ public class ProductID {
         this. productID = code;
     }
 
-    public String getProductID(){
+    public String getProductID() throws NotFoundValueException{
+
+        if(productID == null){
+            throw new NotFoundValueException("Product Code Invalid");
+        }
         return productID;
     }
 
@@ -26,6 +32,7 @@ public class ProductID {
 
     @Override
     public String toString() {
+
         return "ProductID{" + "product code='" + productID + '\'' + '}';
     }
 }

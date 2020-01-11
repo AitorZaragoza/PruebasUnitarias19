@@ -32,7 +32,7 @@ public class Dispensing {
     }
 
     public boolean dispensingEnabled() throws DispensingNotAvailableException {
-        //Probablemente este mal por el valor de dateActual no se si sera correcto
+
         if (actualDate.compareTo(initDate) > 0){
             return true;
         }else{

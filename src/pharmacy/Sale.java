@@ -2,6 +2,7 @@ package pharmacy;
 
 import data.PatientContr;
 import data.ProductID;
+import exceptions.NotFoundValueException;
 import exceptions.SaleClosedException;
 
 import java.math.BigDecimal;
@@ -31,7 +32,6 @@ public class Sale {
     }
 
     public void addLine(ProductID prodID, BigDecimal price, PatientContr contr) throws SaleClosedException {
-
 
         if (isClosed == true){
 
