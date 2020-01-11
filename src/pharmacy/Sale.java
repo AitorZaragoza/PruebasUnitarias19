@@ -16,17 +16,18 @@ public class Sale {
     private Date date;
     private BigDecimal amount;
     private boolean isClosed; // flag to know if the sale is closed
-    private BigDecimal totalTaxes,totalWithTaxes;
-    private BigDecimal taxes = new BigDecimal("0.21");
-    static BigDecimal totalAmount = new BigDecimal("0");
-    List<ProductSaleLine> listaVenta= new ArrayList<>();
+    private BigDecimal totalTaxes,totalWithTaxes, taxes;
+    static BigDecimal totalAmount;
+    List<ProductSaleLine> listaVenta;
 
     public Sale () {  // Assigns the current date, a code to the sale, etc.
         this.saleCode = saleCode;
         this.date = date;
         this.amount = new BigDecimal("0");
         this.isClosed = isClosed;
-
+        listaVenta= new ArrayList<>();
+        taxes = new BigDecimal("0.21");
+        totalAmount = new BigDecimal("0");
     }
 
     public void addLine(ProductID prodID, BigDecimal price, PatientContr contr) throws SaleClosedException {
@@ -99,8 +100,5 @@ public class Sale {
         this.date = date;
     }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
 
 }

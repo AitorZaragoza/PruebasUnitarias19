@@ -4,10 +4,16 @@ import data.ProductID;
 
 public class MedicineDispensingLine {
 
+    private boolean adquired;
 
-    public static boolean adquired(ProductID prodID, boolean adquired){
+    public MedicineDispensingLine(ProductID prodID){
 
-       return adquired = true;
+        this.adquired = true;
+
+    }
+
+    public boolean isAdquired() {
+        return adquired;
     }
 
 }

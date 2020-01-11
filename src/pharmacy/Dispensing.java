@@ -3,7 +3,10 @@ package pharmacy;
 import data.ProductID;
 import exceptions.DispensingNotAvailableException;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 
 public class Dispensing {
@@ -11,6 +14,7 @@ public class Dispensing {
     private byte nOrder; // n. of order for this dispensing inside the treatment
     private Date initDate, finalDate, actualDate; // The period
     private boolean isCompleted;
+    List<MedicineDispensingLine> listaDispensing;
 
 
     // The set of medicines to dispense and its control, among others
@@ -19,6 +23,7 @@ public class Dispensing {
         this.isCompleted = isCompleted;
         this.initDate = initDate;
         this.finalDate = finalDate;
+        listaDispensing = new ArrayList<>();
     }
 
     public Dispensing(Sale sale){
@@ -36,14 +41,26 @@ public class Dispensing {
     }
 
     public void setProductAsDispensed(ProductID prodID) {
-        boolean productAdquired = false;
 
-        productAdquired = MedicineDispensingLine.adquired(prodID, productAdquired);
-
+        MedicineDispensingLine dispensed = new MedicineDispensingLine(prodID);
+        listaDispensing.add(dispensed);
     }
 
     public void setCompleted() {
-        this.isCompleted = true;
+        Iterator<MedicineDispensingLine> it = listaDispensing.iterator();
+
+        int listSize = listaDispensing.size(), count = 0;
+
+        while (it.hasNext()) {
+            MedicineDispensingLine m = it.next();
+            if (m.isAdquired() == true){
+                count ++;
+            }
+        }
+        if (listSize == count){
+            this.isCompleted = true;
+        }
+
     }
 
     public byte getnOrder() {

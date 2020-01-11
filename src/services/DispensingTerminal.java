@@ -14,8 +14,11 @@ import java.util.List;
 public class DispensingTerminal implements NationalHealthService{
 
     private Sale sale;
+    private Dispensing disp;
+
     public DispensingTerminal() {
         this.sale = sale;
+        this.disp = disp;
 
     }
 
@@ -24,19 +27,51 @@ public class DispensingTerminal implements NationalHealthService{
     }
 
     public void initNewSale() throws DispensingNotAvailableException{
+
+        if (disp.dispensingEnabled() != true){
+
+            throw new DispensingNotAvailableException("No esta en el periodo de dispensacion habilitado");
+        }
+
         sale = new Sale();
 
     }
 
     public void enterProduct(ProductID pID) throws ConnectException, SaleClosedException, SaleNotInitiatedException, ProductIDException, ProductNotFoundException, ProductNotInDispensingException{
 
+        if (sale.isClosed()== true){
+            throw new SaleClosedException("SaleClosedException");
+        }
+        if(sale == null){
+            throw new SaleNotInitiatedException("SaleNotInitiatedException"); //Inventado
+        }
+        if (pID.getProductID() == null){
+            throw new ProductIDException("ProductIDException");
+        }
+
     }
 
     public void finalizeSale() throws SaleNotInitiatedException, SaleClosedException{
 
+        if(sale.isClosed() == true){
+            throw new SaleClosedException("SaleClosedException");
+        }
+        if(sale == null){
+            throw new SaleNotInitiatedException("SaleNotInitiatedException"); //Inventado
+        }
+        sale.calculateFinalAmount();
+        disp.setCompleted();
+
     }
 
-    public void realizePayment(BigDecimal quantity) { //OPCIONAL
+    public void realizePayment(BigDecimal quantity) throws SaleNotClosedException { //OPCIONAL
+        if (sale.isClosed() != true){
+            throw new SaleNotClosedException("SaleNotClosedException");
+        }
+        Payment pay = new Payment(sale.getAmount(), quantity);
+        CashPayment cambio = new CashPayment();
+
+        cambio.getChange();
 
     }
 
@@ -46,6 +81,10 @@ public class DispensingTerminal implements NationalHealthService{
 
     public void printNextDispensingSheet() { //NO SE PIDE SU IMPLEMENTACION
 
+    }
+
+    HealthCardID getHealthCardID() throws HealthCardException { //?????????????
+        return null;
     }
 
     @Override

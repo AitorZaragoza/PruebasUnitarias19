@@ -1,7 +1,6 @@
 package pharmacy;
 
 import data.ProductID;
-import pharmacy.Dispensing;
 import exceptions.DispensingNotAvailableException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,13 +18,19 @@ public class DispensingTest {
     static boolean isCompleted;
     Sale sale = new Sale();
     SimpleDateFormat sdf;
-    static Dispensing disp;
+    Dispensing disp = new Dispensing();
+    ProductID prod1, prod2;
 
 
     @BeforeEach
     void setUp(){
         nOrder = 12;
         sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        prod1 = new ProductID("101112");
+        prod2 = new ProductID("101113");
+
+
     }
 
 
@@ -56,4 +61,13 @@ public class DispensingTest {
 
     }
 
+    @Test
+    public void setProductAsDispensedTest(){
+        disp.setProductAsDispensed(prod1);
+        disp.setProductAsDispensed(prod2);
+        disp.setCompleted();
+
+        assertEquals(true, disp.isCompleted());
+
+    }
 }

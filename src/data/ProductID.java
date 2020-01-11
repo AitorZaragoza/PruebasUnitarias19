@@ -1,6 +1,5 @@
 package data;
 
-import exceptions.NotFoundValueException;
 
 public class ProductID {
     private final String productID;
