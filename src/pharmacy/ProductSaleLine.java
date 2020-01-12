@@ -13,7 +13,6 @@ public class ProductSaleLine{
 
         this.subtotal = solution;
 
-
     }
 
     public BigDecimal getSubtotal() {

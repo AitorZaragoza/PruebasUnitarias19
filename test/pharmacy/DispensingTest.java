@@ -30,13 +30,11 @@ public class DispensingTest {
         prod1 = new ProductID("101112");
         prod2 = new ProductID("101113");
 
-
     }
 
 
     @Test
     public void DispensingNotAvailableExceptionTest() throws Exception{
-
 
         Date act = sdf.parse("2009-12-31");
         initDate = sdf.parse("2010-12-31");

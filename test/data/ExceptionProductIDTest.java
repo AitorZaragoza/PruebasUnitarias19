@@ -17,10 +17,18 @@ public class ExceptionProductIDTest {
 
 
     @Test
-    public void ExceptionProductIDTest(){
+    public void ExceptionProductIDNullTest(){
 
-        assertThrows(NotFoundValueException.class,()->productID.getProductID());
+        assertThrows(NotFoundValueException.class,()->productID.checkNumber());
     }
+
+    @Test
+    public void ExceptionProductIDFormatTest(){
+
+        assertThrows(NotFoundValueException.class,()->productID.checkNumber());
+    }
+
+
 
 
 }

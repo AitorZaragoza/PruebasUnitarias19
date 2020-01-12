@@ -11,12 +11,17 @@ public class ProductID {
         this. productID = code;
     }
 
-    public String getProductID() throws NotFoundValueException{
+    public String getProductID(){
 
-        if(productID == null){
+        return productID;
+    }
+
+    public void checkNumber() throws NotFoundValueException{
+
+        if(productID == null || productID.length() != 12) {
             throw new NotFoundValueException("Product Code Invalid");
         }
-        return productID;
+
     }
 
     @Override

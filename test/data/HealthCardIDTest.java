@@ -11,13 +11,15 @@ public class HealthCardIDTest {
 
     @BeforeEach
     void setUp(){
-        healthCardID1 = new HealthCardID("73215736C");
+
+        healthCardID1 = new HealthCardID("73215736");
     }
 
     @Test
     public void HealthCardIDTest() throws Exception{
 
-        assertEquals("73215736C", healthCardID1.getPersonalID());
+        healthCardID1.checkNumber();
+        assertEquals("73215736", healthCardID1.getPersonalID());
 
     }
 }

@@ -12,14 +12,13 @@ public class ProductIDTest {
 
     @BeforeEach
     void setUp() {
-        productID = new ProductID("21212121");
+        productID = new ProductID("212121213487");
     }
 
     @Test
     public void ProductIDTest() throws Exception{
-
-        assertEquals("21212121", productID.getProductID());
-
+        productID.checkNumber();
+        assertEquals("212121213487", productID.getProductID());
     }
 }
 

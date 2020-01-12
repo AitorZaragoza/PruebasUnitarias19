@@ -2,7 +2,6 @@ package pharmacy;
 
 import data.PatientContr;
 import data.ProductID;
-import exceptions.NotFoundValueException;
 import exceptions.SaleClosedException;
 
 import java.math.BigDecimal;
@@ -51,7 +50,6 @@ public class Sale {
         while (it.hasNext()) {
             ProductSaleLine p = it.next();
             amount = amount.add(p.getSubtotal());
-
         }
     }
 

@@ -19,7 +19,6 @@ public class PatientContrTest {
         result = new BigDecimal("25.65");
     }
 
-
     @Test
     public void PatientContrTest() throws Exception{
 

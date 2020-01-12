@@ -11,16 +11,20 @@ final public class HealthCardID {
 
     public HealthCardID(String code){
 
-        this. personalID = code;
+        this.personalID = code;
     }
 
     public String getPersonalID() throws NotFoundValueException{
 
-        if(personalID == null){
+        return personalID;
+    }
+
+    public void checkNumber() throws NotFoundValueException{
+
+        if(personalID == null || personalID.length() != 8) {
             throw new NotFoundValueException("Code Invalid");
         }
 
-        return personalID;
     }
 
     @Override

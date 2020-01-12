@@ -17,29 +17,31 @@ public class DispensingTerminal {
 
     private Sale sale;
     private Dispensing disp;
-    NationalHealthService SNS;
-    HealthCardReader healthCardIDr;
-    HealthCardID healthCardIDactual;
+    private NationalHealthService sns;
+    private HealthCardReader healthCardIDr;
+    private HealthCardID healthCardIDactual;
+
 
     public DispensingTerminal() {
         this.sale = sale;
         this.disp = disp;
+
     }
 
     public void getePrescription(char option) throws ConnectException, NotValidePrescriptionException, PatientIDException, HealthCardException{
 
         healthCardIDactual = healthCardIDr.getHealthCardID();
-        disp = SNS.getePrescription(healthCardIDactual);
+        disp = sns.getePrescription(healthCardIDactual);
     }
 
     public void initNewSale() throws DispensingNotAvailableException{
-
+        //sale = new Sale();
+        //disp = new Dispensing(sale);
         if (disp.dispensingEnabled() != true){ throw new DispensingNotAvailableException("No esta en el periodo de dispensacion habilitado"); }
-        sale = new Sale();
-        disp = new Dispensing(sale);
+
     }
 
-    public void enterProduct(ProductID pID) throws ConnectException, SaleClosedException, SaleNotInitiatedException, ProductIDException, ProductNotFoundException, ProductNotInDispensingException, NotFoundValueException {
+    public void enterProduct(ProductID pID) throws ConnectException, SaleClosedException, SaleNotInitiatedException, ProductIDException, ProductNotFoundException, ProductNotInDispensingException{
 
         ProductSpecification producto;
         PatientContr contribucion;
@@ -48,8 +50,8 @@ public class DispensingTerminal {
         if (pID.getProductID() == null){
             throw new ProductIDException("ProductIDException");
         }
-        producto = SNS.getProductSpecific(pID);
-        contribucion = SNS.getPatientContr(healthCardIDactual);
+        producto = sns.getProductSpecific(pID);
+        contribucion = sns.getPatientContr(healthCardIDactual);
         sale.addLine(pID, producto.getPrice(), contribucion);
         disp.setProductAsDispensed(pID);
     }
@@ -78,5 +80,28 @@ public class DispensingTerminal {
 
     }
 
+    public void setSale(Sale sale) {
+        this.sale = sale;
+    }
+
+    public void setDisp(Dispensing disp) {
+        this.disp = disp;
+    }
+
+    public void setSns(NationalHealthService sns) {
+        this.sns = sns;
+    }
+
+    public void setHealthCardIDr(HealthCardReader healthCardIDr) {
+        this.healthCardIDr = healthCardIDr;
+    }
+
+    public Sale getSale() {
+        return sale;
+    }
+
+    public Dispensing getDisp() {
+        return disp;
+    }
 
 }
