@@ -13,7 +13,6 @@ import services.DispensingTerminal;
 import services.HealthCardReader;
 import services.NationalHealthService;
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,13 +22,11 @@ import java.util.List;
 
 public class DispensingTerminalTest{
 
-
-
     private static class NationalHealthServiceCorrect implements NationalHealthService{
 
         @Override
         public Dispensing getePrescription(HealthCardID hcID) throws HealthCardException, NotValidePrescriptionException, ConnectException {
-            ProductID pID = new ProductID("50502");
+            ProductID pID = new ProductID("505024578653");
             Dispensing dispensing = new Dispensing();
             dispensing.setProductAsDispensed(pID);
             dispensing.setCompleted();
@@ -135,7 +132,7 @@ public class DispensingTerminalTest{
 
         @Override
         public Dispensing getePrescription(HealthCardID hcID) throws HealthCardException, NotValidePrescriptionException, ConnectException {
-            ProductID pID = new ProductID("50502");
+            ProductID pID = new ProductID("50502345");
             Dispensing dispensing = new Dispensing();
             dispensing.setProductAsDispensed(pID);
             dispensing.setCompleted();
@@ -260,7 +257,7 @@ public class DispensingTerminalTest{
         hcrSpy = new HealthCardReaderSpy();
 
 
-        pID = new ProductID("123456");
+        pID = new ProductID("505024578653");
         hcID = new HealthCardID("12345678");
         BigDecimal num = new BigDecimal("12345678");
         pContr = new PatientContr(num);
@@ -342,8 +339,6 @@ public class DispensingTerminalTest{
 
     }
 
-
-
     @Test
     void getePrescriptionSpyTest() throws HealthCardException, PatientIDException, ConnectException, NotValidePrescriptionException {
 
@@ -355,7 +350,6 @@ public class DispensingTerminalTest{
 
     @Test
     void enterProductSpyTest() throws ConnectException, SaleClosedException, NotFoundValueException, ProductNotFoundException, ProductIDException, ProductNotInDispensingException, SaleNotInitiatedException, DispensingNotAvailableException {
-
 
         dispensingTerminal.initNewSale();
         dispensingTerminal.enterProduct(pID);

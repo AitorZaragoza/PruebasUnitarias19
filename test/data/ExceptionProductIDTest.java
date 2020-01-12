@@ -24,11 +24,8 @@ public class ExceptionProductIDTest {
 
     @Test
     public void ExceptionProductIDFormatTest(){
-
+        productID = new ProductID("7654321456");
         assertThrows(NotFoundValueException.class,()->productID.checkNumber());
     }
-
-
-
 
 }

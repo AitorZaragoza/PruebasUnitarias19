@@ -13,13 +13,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DispensingTest {
 
-    static byte nOrder; // n. of order for this dispensing inside the treatment
-    static Date initDate, finalDate; // The period
-    static boolean isCompleted;
-    Sale sale = new Sale();
-    SimpleDateFormat sdf;
-    Dispensing disp = new Dispensing();
-    ProductID prod1, prod2;
+    private byte nOrder; // n. of order for this dispensing inside the treatment
+    private Date initDate; // The period
+    private Sale sale = new Sale();
+    private SimpleDateFormat sdf;
+    private Dispensing disp = new Dispensing();
+    private ProductID prod1, prod2;
 
 
     @BeforeEach

@@ -76,8 +76,7 @@ public class DispensingTerminal {
 
     }
 
-    public void printNextDispensingSheet() { //NO SE PIDE SU IMPLEMENTACION
-
+    public void printNextDispensingSheet() { //NO SE PIDE IMPLEMENTAR
     }
 
     public void setSale(Sale sale) {

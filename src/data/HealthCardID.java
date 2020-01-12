@@ -14,7 +14,7 @@ final public class HealthCardID {
         this.personalID = code;
     }
 
-    public String getPersonalID() throws NotFoundValueException{
+    public String getPersonalID(){
 
         return personalID;
     }

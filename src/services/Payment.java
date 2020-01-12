@@ -9,7 +9,6 @@ public class Payment {
 
     static BigDecimal importe, quantity;
 
-
     public Payment(BigDecimal impor, BigDecimal quantit){
         importe = impor;
         quantity = quantit;

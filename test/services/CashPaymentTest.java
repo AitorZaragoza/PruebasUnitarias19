@@ -11,14 +11,13 @@ import java.math.BigDecimal;
 
 public class CashPaymentTest {
 
-    static Payment payment;
-    static CashPayment cashPayment;
-    static BigDecimal importe, quantity;
+    Payment payment;
+    private CashPayment cashPayment;
+    private BigDecimal importe, quantity;
 
     @BeforeEach
     void setUp(){
         quantity = new BigDecimal("12");
-
         cashPayment = new CashPayment();
     }
 
@@ -36,7 +35,6 @@ public class CashPaymentTest {
     void QuantityMinorThanImportTest(){
         importe = new BigDecimal("14");
         payment = new Payment(importe, quantity);
-
 
         assertThrows(QuantityMinorThanImport.class,()->cashPayment.calculateChange());
     }

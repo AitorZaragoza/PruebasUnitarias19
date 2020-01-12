@@ -2,12 +2,10 @@ package pharmacy;
 
 
 import data.PatientContr;
-import exceptions.NotFoundValueException;
 import exceptions.SaleClosedException;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import data.ProductID;
 import org.junit.jupiter.api.Test;
 
@@ -16,15 +14,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SaleTest {
 
-    int saleCode;
-    Date date;
-    boolean isClosed; // flag to know if the sale is closed
-    BigDecimal sumaParcial, totalTaxes,totalWithTaxes, price, price2;
-    static BigDecimal totalAmount;
-
-    ProductID prodID, prodID2;
-    PatientContr patientContr, patientContr2;
-    Sale sale = new Sale();
+    private BigDecimal price, price2;
+    private ProductID prodID, prodID2;
+    private PatientContr patientContr, patientContr2;
+    private Sale sale = new Sale();
 
     @BeforeEach
     void setUp() throws SaleClosedException{
